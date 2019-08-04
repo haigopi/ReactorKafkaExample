@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ReactorKafkaExample.iml" filepath="$PROJECT_DIR$/ReactorKafkaExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReactorKafkaExample_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ReactorKafkaExample_main.iml" group="ReactorKafkaExample" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ReactorKafkaExample_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ReactorKafkaExample_test.iml" group="ReactorKafkaExample" />
+    </modules>
+  </component>
+</project>

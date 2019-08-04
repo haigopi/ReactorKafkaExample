@@ -1,6 +1,8 @@
 package com.allibilli.recator.consumer;
 
+import com.allibilli.recator.model.TopicConfigMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.Disposable;
@@ -13,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Map;
 
 /**
  * Created by Gopi K Kancharla
@@ -23,7 +26,7 @@ import java.util.Collections;
 public class StockPriceConsumer {
 
 
-    String kafkaTopic;
+    String kafkaTopic="testme";
 
     private ReceiverOptions<Integer, String> receiverOptions;
     private Disposable disposable;
@@ -31,13 +34,16 @@ public class StockPriceConsumer {
     @Autowired
     MessageProcessor messageProcessor;
 
+    @Autowired
+    TopicConfigMapper topicConfigMapper;
+
     @PostConstruct
     public void reactorConsumer() {
-        //Map<String, Object> props = kafkaConfigMapper.getConvertedConfigurations();
-        //props.put(ConsumerConfig.GROUP_ID_CONFIG, nodeIdentity.getNodeIdentifier());
+        Map<String, Object> props = topicConfigMapper.getConvertedConfigurations();
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "CUSTOM_GROUP");
 
-        //receiverOptions = ReceiverOptions.create(props);
-        //disposable = consumeMessages(kafkaTopic);
+        receiverOptions = ReceiverOptions.create(props);
+        disposable = consumeMessages(kafkaTopic);
         log.info("Heartbeat consumer loaded");
     }
 

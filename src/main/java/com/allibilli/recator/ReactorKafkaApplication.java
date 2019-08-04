@@ -38,13 +38,7 @@ public class ReactorKafkaApplication {
     @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
     public ResponseEntity recieveRequest(@RequestBody EventModel incomingMessage) {
         log.info("Message Recieved: {}", incomingMessage);
-
-        //
-        //producer.sendMessage(incomingMessage);
-
-        //
-
-
+        producer.sendMessage(incomingMessage);
         return ResponseEntity.ok("THANKS");
     }
 

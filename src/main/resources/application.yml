@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: REACT_TEST
+    time: HH:mm:ss:SSS z dd MMM yyyy
+  jersey:
+    application-path: api
+    REQUEST: servlet
+    load-on-startup: -1
+    configurations:
+      packages: com.allibilli
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+app:
+  retry:
+    num: 3
+    expBackOff: 20
+
+endpoints:
+  enabled: true
+  info:
+    enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+
+server:
+  context-path: /adapter-orchestration/
+  servlet-path: /
+  port: 8080
+
+reactor:
+  kafka:
+    configurations:
+      bootstrap.servers: localhost:9092
+      retries: 10
+      max.poll.interval.ms: 2147483647 # Integer.MAX_VALUE
+      #request.timeout.ms: 360000 #Join Group MaxTime
+      session.timeout.ms: 40000 # The timeout used to detect worker failures. The worker sends periodic heartbeats to indicate its liveness to the broker. If no heartbeats are received by the broker before the expiration of this session timeout, then the broker will remove the worker from the group and initiate a rebalance. Broker Configs??
+      max.poll.records: 10 #
+      key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto.offset.reset: latest
+      heartbeat.interval.ms: 30000
+      fetch.max.bytes: 1048576
+      max.partition.fetch.bytes: 10240 # Default 1 MB
+      retry.backoff.ms: 10000 # The amount of time to wait before attempting to retry a failed request to a given topic partition
+
+security:
+  basic:
+    enabled: false
+  ignored: /**

@@ -32,4 +32,5 @@ dependencies {
 	compile 'org.springframework.kafka:spring-kafka'
 	compile 'org.springframework.kafka:spring-kafka-test'
 	compile "io.projectreactor.kafka:reactor-kafka:1.0.0.RELEASE"
+	optional "org.springframework.boot:spring-boot-configuration-processor"
 }
